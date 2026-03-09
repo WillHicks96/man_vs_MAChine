@@ -1,0 +1,162 @@
+{
+  "n_halos": 10000,
+  "flags_order": [
+    "R1",
+    "R2",
+    "R3",
+    "R4"
+  ],
+  "cells": [
+    {
+      "R1": false,
+      "R2": false,
+      "R3": false,
+      "R4": false,
+      "bitstring_R1R2R3R4": "0000",
+      "count": 224
+    },
+    {
+      "R1": false,
+      "R2": false,
+      "R3": false,
+      "R4": true,
+      "bitstring_R1R2R3R4": "0001",
+      "count": 14
+    },
+    {
+      "R1": false,
+      "R2": false,
+      "R3": true,
+      "R4": false,
+      "bitstring_R1R2R3R4": "0010",
+      "count": 100
+    },
+    {
+      "R1": false,
+      "R2": false,
+      "R3": true,
+      "R4": true,
+      "bitstring_R1R2R3R4": "0011",
+      "count": 37
+    },
+    {
+      "R1": false,
+      "R2": true,
+      "R3": false,
+      "R4": false,
+      "bitstring_R1R2R3R4": "0100",
+      "count": 622
+    },
+    {
+      "R1": false,
+      "R2": true,
+      "R3": false,
+      "R4": true,
+      "bitstring_R1R2R3R4": "0101",
+      "count": 92
+    },
+    {
+      "R1": false,
+      "R2": true,
+      "R3": true,
+      "R4": false,
+      "bitstring_R1R2R3R4": "0110",
+      "count": 159
+    },
+    {
+      "R1": false,
+      "R2": true,
+      "R3": true,
+      "R4": true,
+      "bitstring_R1R2R3R4": "0111",
+      "count": 92
+    },
+    {
+      "R1": true,
+      "R2": false,
+      "R3": false,
+      "R4": false,
+      "bitstring_R1R2R3R4": "1000",
+      "count": 519
+    },
+    {
+      "R1": true,
+      "R2": false,
+      "R3": false,
+      "R4": true,
+      "bitstring_R1R2R3R4": "1001",
+      "count": 169
+    },
+    {
+      "R1": true,
+      "R2": false,
+      "R3": true,
+      "R4": false,
+      "bitstring_R1R2R3R4": "1010",
+      "count": 109
+    },
+    {
+      "R1": true,
+      "R2": false,
+      "R3": true,
+      "R4": true,
+      "bitstring_R1R2R3R4": "1011",
+      "count": 139
+    },
+    {
+      "R1": true,
+      "R2": true,
+      "R3": false,
+      "R4": false,
+      "bitstring_R1R2R3R4": "1100",
+      "count": 2262
+    },
+    {
+      "R1": true,
+      "R2": true,
+      "R3": false,
+      "R4": true,
+      "bitstring_R1R2R3R4": "1101",
+      "count": 2039
+    },
+    {
+      "R1": true,
+      "R2": true,
+      "R3": true,
+      "R4": false,
+      "bitstring_R1R2R3R4": "1110",
+      "count": 566
+    },
+    {
+      "R1": true,
+      "R2": true,
+      "R3": true,
+      "R4": true,
+      "bitstring_R1R2R3R4": "1111",
+      "count": 2857
+    }
+  ],
+  "named_counts": {
+    "R1_only": 519,
+    "R2_only": 622,
+    "R3_only": 100,
+    "R4_only": 14,
+    "R1_and_R2": 7724,
+    "R1_and_R3": 3671,
+    "R1_and_R4": 5204,
+    "R2_and_R3": 3674,
+    "R2_and_R4": 5080,
+    "R3_and_R4": 3125,
+    "R1_and_R2_and_R3": 3423,
+    "R1_and_R2_and_R4": 4896,
+    "R1_and_R3_and_R4": 2996,
+    "R2_and_R3_and_R4": 2949,
+    "R1_and_R2_and_R3_and_R4": 2857,
+    "R1_and_R3_and_not_R2": 248,
+    "R1_and_R3_and_not_R2_and_not_R4": 109,
+    "R1_and_R3_only": 109,
+    "none": 224,
+    "any": 9776,
+    "all": 2857
+  }
+}

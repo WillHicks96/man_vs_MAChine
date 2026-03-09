@@ -1,0 +1,89 @@
+{
+  "cosmology": {
+    "H0_km_s_Mpc": 67.66,
+    "Neff": 3.04,
+    "Ob0": 0.04897468161869667,
+    "Om0": 0.3096446816186967,
+    "Tcmb0": 0.0
+  },
+  "file_format": "opencosmo",
+  "groups_present": {
+    "halo_profiles": true,
+    "halo_properties": true
+  },
+  "halo_profiles": {
+    "id_columns": [
+      "unique_tag",
+      "fof_halo_bin_tag",
+      "block"
+    ],
+    "n_bins": 51,
+    "n_halos": 10000,
+    "name": "frontierE_z0_halo_profiles",
+    "profile_columns": [
+      "sod_halo_bin_hot_gas_ne_ew_sig",
+      "sod_halo_bin_gas_entropy",
+      "sod_halo_bin_zmet",
+      "sod_halo_bin_gas_ne_sig",
+      "sod_halo_bin_gas_temperature",
+      "sod_halo_bin_gas_fraction",
+      "sod_halo_bin_norm_gas_YSZ",
+      "sod_halo_bin_hot_gas_temp_ew",
+      "sod_halo_bin_hot_gas_ne_ew",
+      "sod_halo_bin_cdm_fraction",
+      "sod_halo_bin_mass",
+      "sod_halo_bin_gas_pthermal",
+      "sod_halo_bin_rad_vel_sig",
+      "sod_halo_bin_gas_ne",
+      "sod_halo_bin_gas_temperature_sig",
+      "sod_halo_bin_wind_fraction",
+      "sod_halo_bin_count",
+      "sod_halo_bin_gas_pthermal_sig",
+      "sod_halo_bin_hot_gas_entropy_ew_sig",
+      "sod_halo_bin_hot_gas_temp_ew_sig",
+      "sod_halo_bin_zmet_sig",
+      "sod_halo_bin_gas_pkinetic",
+      "sod_halo_bin_sfgas_fraction",
+      "sod_halo_bin_gas_pkinetic_sig",
+      "sod_halo_bin_rad_vel",
+      "sod_halo_bin_yhe_sig",
+      "sod_halo_bin_gas_entropy_sig",
+      "sod_halo_bin_yhe",
+      "sod_halo_bin_star_fraction",
+      "sod_halo_bin_hot_gas_lumin_bolo",
+      "sod_halo_bin_hot_gas_entropy_ew"
+    ],
+    "radius_column": "sod_halo_bin_radius"
+  },
+  "halo_properties_dataset": {
+    "n_rows": 10000,
+    "name": "frontierE_z0_halo_properties",
+    "required_columns_present": {
+      "fof_halo_center_x": true,
+      "fof_halo_center_y": true,
+      "fof_halo_center_z": true,
+      "fof_halo_tag": true,
+      "sod_halo_L500cBolo": true,
+      "sod_halo_M500c": true,
+      "sod_halo_R200m": true,
+      "sod_halo_R500c": true,
+      "sod_halo_T500c": true,
+      "sod_halo_T500cBoloEx": true,
+      "sod_halo_Y500c": true,
+      "sod_halo_com_x": true,
+      "sod_halo_com_x_dm": true,
+      "sod_halo_com_x_gas": true,
+      "sod_halo_com_y": true,
+      "sod_halo_com_y_dm": true,
+      "sod_halo_com_y_gas": true,
+      "sod_halo_com_z": true,
+      "sod_halo_com_z_dm": true,
+      "sod_halo_com_z_gas": true,
+      "sod_halo_core_entropy": true,
+      "sod_halo_core_ne": true,
+      "sod_halo_mmagn_mass": true
+    }
+  },
+  "source_file": "run_artifacts_man_vs_machine_more_specific/96ac9ef5-f0c8-4cca-a014-684cffce730b/filtered_haloproperties.hdf5",
+  "units_note": "Per MACosmo/HACC convention: masses in Msun/h, lengths in Mpc/h (comoving) unless otherwise specified in downstream metadata."
+}

@@ -1,0 +1,110 @@
+{
+  "source_hdf5": "run_artifacts_man_vs_machine_more_specific/96ac9ef5-f0c8-4cca-a014-684cffce730b/filtered_haloproperties.hdf5",
+  "selected_halos": [
+    {
+      "fof_halo_tag": 660813234658,
+      "sod_halo_R500c": 0.7626392245292664,
+      "profile_index": 755
+    },
+    {
+      "fof_halo_tag": 2875785978456,
+      "sod_halo_R500c": 0.718287467956543,
+      "profile_index": 1360
+    },
+    {
+      "fof_halo_tag": 561308509456,
+      "sod_halo_R500c": 0.8200488686561584,
+      "profile_index": 2906
+    },
+    {
+      "fof_halo_tag": 1517657257314,
+      "sod_halo_R500c": 0.9354795813560486,
+      "profile_index": 3341
+    },
+    {
+      "fof_halo_tag": 325131364376,
+      "sod_halo_R500c": 1.0965455770492554,
+      "profile_index": 3470
+    },
+    {
+      "fof_halo_tag": 255883277564,
+      "sod_halo_R500c": 0.7307769060134888,
+      "profile_index": 3475
+    },
+    {
+      "fof_halo_tag": 2070428149246,
+      "sod_halo_R500c": 1.0224711894989014,
+      "profile_index": 3855
+    },
+    {
+      "fof_halo_tag": 2051363626118,
+      "sod_halo_R500c": 0.8546361923217773,
+      "profile_index": 4457
+    },
+    {
+      "fof_halo_tag": 2697936653262,
+      "sod_halo_R500c": 0.7813490629196167,
+      "profile_index": 4734
+    },
+    {
+      "fof_halo_tag": 3802916838212,
+      "sod_halo_R500c": 0.9706259965896606,
+      "profile_index": 4893
+    }
+  ],
+  "profile_radius_column": "sod_halo_bin_radius",
+  "profile_columns": [
+    "sod_halo_bin_hot_gas_ne_ew_sig",
+    "sod_halo_bin_gas_entropy",
+    "sod_halo_bin_zmet",
+    "sod_halo_bin_gas_ne_sig",
+    "sod_halo_bin_gas_temperature",
+    "sod_halo_bin_gas_fraction",
+    "sod_halo_bin_norm_gas_YSZ",
+    "sod_halo_bin_hot_gas_temp_ew",
+    "sod_halo_bin_hot_gas_ne_ew",
+    "sod_halo_bin_cdm_fraction"
+  ],
+  "plots": [
+    {
+      "fof_halo_tag": 660813234658,
+      "png": "run_artifacts_man_vs_machine_more_specific/step1_random_profiles_halo_660813234658.png"
+    },
+    {
+      "fof_halo_tag": 2875785978456,
+      "png": "run_artifacts_man_vs_machine_more_specific/step1_random_profiles_halo_2875785978456.png"
+    },
+    {
+      "fof_halo_tag": 561308509456,
+      "png": "run_artifacts_man_vs_machine_more_specific/step1_random_profiles_halo_561308509456.png"
+    },
+    {
+      "fof_halo_tag": 1517657257314,
+      "png": "run_artifacts_man_vs_machine_more_specific/step1_random_profiles_halo_1517657257314.png"
+    },
+    {
+      "fof_halo_tag": 325131364376,
+      "png": "run_artifacts_man_vs_machine_more_specific/step1_random_profiles_halo_325131364376.png"
+    },
+    {
+      "fof_halo_tag": 255883277564,
+      "png": "run_artifacts_man_vs_machine_more_specific/step1_random_profiles_halo_255883277564.png"
+    },
+    {
+      "fof_halo_tag": 2070428149246,
+      "png": "run_artifacts_man_vs_machine_more_specific/step1_random_profiles_halo_2070428149246.png"
+    },
+    {
+      "fof_halo_tag": 2051363626118,
+      "png": "run_artifacts_man_vs_machine_more_specific/step1_random_profiles_halo_2051363626118.png"
+    },
+    {
+      "fof_halo_tag": 2697936653262,
+      "png": "run_artifacts_man_vs_machine_more_specific/step1_random_profiles_halo_2697936653262.png"
+    },
+    {
+      "fof_halo_tag": 3802916838212,
+      "png": "run_artifacts_man_vs_machine_more_specific/step1_random_profiles_halo_3802916838212.png"
+    }
+  ]
+}

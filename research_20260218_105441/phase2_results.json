@@ -1,0 +1,19 @@
+{
+  "chosen_halo_indices": [
+    1457,
+    5947,
+    3613,
+    1374,
+    943,
+    9251,
+    225,
+    8267,
+    1645,
+    6120
+  ],
+  "f_b": 0.158171834625323,
+  "plots": [
+    "phase2_profiles_vs_references.png",
+    "phase2_nfw_comparison.png"
+  ]
+}

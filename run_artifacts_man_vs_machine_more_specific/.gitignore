@@ -1,0 +1,48 @@
+# ── Data / large binaries ────────────────────────────────────────────────────
+*.hdf5
+*.h5
+*.fits
+*.npy
+*.npz
+*.pkl
+*.pickle
+
+# ── UUID download dirs (contain raw HDF5 data) ───────────────────────────────
+[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]-*/
+
+# ── Large CSVs (>1 MB) ───────────────────────────────────────────────────────
+fit_params.csv
+per_halo_residuals_by_split.csv
+step7_enriched.csv
+step7_table.csv
+step7_with_C_base.csv
+scatter_input_table.csv
+
+# ── Videos ───────────────────────────────────────────────────────────────────
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# ── Temp dirs ─────────────────────────────────────────────────────────────────
+temp/
+tmp/
+
+# ── Python cache ──────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+
+# ── LaTeX build artifacts ────────────────────────────────────────────────────
+*.aux
+*.log
+*.out
+*.bbl
+*.blg
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+
+# ── OS junk ──────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db

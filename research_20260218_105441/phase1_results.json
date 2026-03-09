@@ -1,0 +1,62 @@
+{
+  "catalog_path": "/data/a/cpac/nramachandra/Projects/AmSC/tmp/OpenCosmo/5ee0c456-c6a5-4265-97e1-1f66f69e20d4/filtered_haloproperties.hdf5",
+  "run_id": "5ee0c456-c6a5-4265-97e1-1f66f69e20d4",
+  "n_halos": 10000,
+  "n_profile_bins": 51,
+  "fof_mass_min": 42766356709376.0,
+  "fof_mass_max": 1594382591459328.0,
+  "m500c_min": 16935900151808.0,
+  "m500c_max": 1089721249824768.0,
+  "chosen_halo_indices": [
+    1457,
+    5947,
+    3613,
+    1374,
+    943,
+    9251,
+    225,
+    8267,
+    1645,
+    6120
+  ],
+  "chosen_halo_logM": [
+    13.670682907104492,
+    13.753087043762207,
+    13.8472318649292,
+    13.871259689331055,
+    13.932998657226562,
+    13.997424125671387,
+    14.10636043548584,
+    14.17673110961914,
+    14.29294204711914,
+    14.467531204223633
+  ],
+  "chosen_halo_r500c": [
+    0.35903772711753845,
+    0.4140615165233612,
+    0.4601287245750427,
+    0.38612064719200134,
+    0.4421369731426239,
+    0.4842066466808319,
+    0.468514084815979,
+    0.5761717557907104,
+    0.46247598528862,
+    0.6314890384674072
+  ],
+  "profile_types": [
+    "Enclosed Mass",
+    "Gas Electron Density",
+    "Gas Temperature",
+    "Gas Entropy",
+    "Thermal Pressure",
+    "X-ray Bolometric Lumin.",
+    "Radial Velocity",
+    "Gas Fraction",
+    "Metallicity",
+    "CDM Fraction"
+  ],
+  "plots": [
+    "phase1_10profiles_10halos.png",
+    "phase1_mass_histogram.png"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "delta3_definition": "sod_halo_core_entropy [keV cm^2]; low = cool-core = thermally relaxed",
+  "thresholds": {
+    "delta1": 0.07,
+    "delta2": 0.07,
+    "K_core_threshold": 150.0
+  },
+  "n_valid": 9985,
+  "n_all_relaxed": 2398,
+  "n_all_unrelaxed": 758,
+  "n_R1R2_notR3": 1800,
+  "n_sloshing_CC": 2421,
+  "n_R1_notR2": 442,
+  "n_extreme_noCC": 163,
+  "n_extreme_sloshing": 287,
+  "n_extreme_chaos": 52,
+  "Kcore_percentiles": [
+    64.32287902832032,
+    108.5012435913086,
+    149.89254760742188,
+    203.63836669921875,
+    346.6505310058593
+  ],
+  "c_X_percentiles": [
+    0.4186678469181061,
+    0.4517068862915039,
+    0.4680427014827728,
+    0.4943893253803253,
+    0.5345038294792175
+  ],
+  "plots": [
+    "/data/a/cpac/nramachandra/Projects/AmSC/claude_agent_experiments/runs/research_20260218_105441/phase5_three_criteria_comparison.png",
+    "/data/a/cpac/nramachandra/Projects/AmSC/claude_agent_experiments/runs/research_20260218_105441/phase5_stacked_profiles_by_class.png",
+    "/data/a/cpac/nramachandra/Projects/AmSC/claude_agent_experiments/runs/research_20260218_105441/phase5_scaling_relations.png",
+    "/data/a/cpac/nramachandra/Projects/AmSC/claude_agent_experiments/runs/research_20260218_105441/phase5_extreme_objects_profiles.png",
+    "/data/a/cpac/nramachandra/Projects/AmSC/claude_agent_experiments/runs/research_20260218_105441/phase5_core_entropy_analysis.png"
+  ]
+}

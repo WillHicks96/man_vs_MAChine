@@ -1,0 +1,23 @@
+{
+  "n_halos": 10000,
+  "counts": {
+    "A1": 8660,
+    "A0": 1340,
+    "B1": 7724,
+    "B0": 936,
+    "C1": 3671,
+    "C0": 4989,
+    "D1": 5204,
+    "D0": 3456
+  },
+  "checks": {
+    "A1_plus_A0_equals_N": true,
+    "B1_plus_B0_equals_A1": true,
+    "C1_plus_C0_equals_A1": true,
+    "D1_plus_D0_equals_A1": true
+  },
+  "files": {
+    "mask_csv": "run_artifacts_man_vs_machine_more_specific/halo_population_masks.csv",
+    "mask_json": "run_artifacts_man_vs_machine_more_specific/halo_population_masks.json"
+  }
+}

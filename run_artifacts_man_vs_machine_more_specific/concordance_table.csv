@@ -1,0 +1,17 @@
+R1,R2,R3,R4,bitstring_R1R2R3R4,count
+False,False,False,False,0000,224
+False,False,False,True,0001,14
+False,False,True,False,0010,100
+False,False,True,True,0011,37
+False,True,False,False,0100,622
+False,True,False,True,0101,92
+False,True,True,False,0110,159
+False,True,True,True,0111,92
+True,False,False,False,1000,519
+True,False,False,True,1001,169
+True,False,True,False,1010,109
+True,False,True,True,1011,139
+True,True,False,False,1100,2262
+True,True,False,True,1101,2039
+True,True,True,False,1110,566
+True,True,True,True,1111,2857

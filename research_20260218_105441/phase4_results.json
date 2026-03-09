@@ -1,0 +1,31 @@
+{
+  "n_halos_total": 10000,
+  "n_halos_valid": 10000,
+  "n_relaxed_d1": 4644,
+  "n_unrelaxed_d1": 5356,
+  "delta1_percentiles": [
+    0.018486415781080724,
+    0.04208479914814234,
+    0.07605128362774849,
+    0.13694144412875175,
+    0.3593142196536062
+  ],
+  "delta2_percentiles": [
+    0.013989969855174422,
+    0.027628422249108553,
+    0.0417464729398489,
+    0.060124379582703114,
+    0.10164905674755573
+  ],
+  "K0_median_relaxed": 0.009042481426149607,
+  "K0_median_unrelaxed": 0.010698153637349606,
+  "entropy_slope_median_relaxed": 0.5799663237417434,
+  "entropy_slope_median_unrelaxed": 0.5422867526704268,
+  "c_ratio_median_relaxed": 0.2574833374125694,
+  "c_ratio_median_unrelaxed": 0.29452237778664947,
+  "plots": [
+    "phase4_com_offset_correlations.png",
+    "phase4_offsets_distributions.png",
+    "phase4_profile_metrics_by_relaxation.png"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "delta4_definition": "TPI = z(ln core_ne) + z(ln T_ratio); T_ratio = T500cBoloEx/T500c",
+  "thresholds": {
+    "delta1": 0.07,
+    "delta2": 0.07,
+    "K_core": 150.0,
+    "TPI": 0.0
+  },
+  "n_valid": 9985,
+  "n_R4": 5344,
+  "n_R1_andR2": 4198,
+  "n_R1_notR2": 442,
+  "n_R1_andR3": 2576,
+  "n_R1_notR3": 2064,
+  "n_R1_andR4": 3093,
+  "n_R1_notR4": 1547,
+  "delta3_delta4_concordance": {
+    "both_CC": 3598,
+    "both_NCC": 3242,
+    "K_CC_TPI_NCC": 1399,
+    "TPI_CC_K_NCC": 1746
+  },
+  "TPI_percentiles": [
+    -2.8159016132354737,
+    -1.0233607292175293,
+    0.15509575605392456,
+    1.1725420951843262,
+    2.90213141441345
+  ],
+  "T_ratio_percentiles": [
+    1.0397280931472779,
+    1.0985934734344482,
+    1.1390128135681152,
+    1.1769120693206787,
+    1.2668738842010498
+  ],
+  "plots": [
+    "/data/a/cpac/nramachandra/Projects/AmSC/claude_agent_experiments/runs/research_20260218_105441/phase6_stacked_profiles_comprehensive.png",
+    "/data/a/cpac/nramachandra/Projects/AmSC/claude_agent_experiments/runs/research_20260218_105441/phase6_ratio_profiles.png",
+    "/data/a/cpac/nramachandra/Projects/AmSC/claude_agent_experiments/runs/research_20260218_105441/phase6_tpi_diagnostic.png"
+  ]
+}

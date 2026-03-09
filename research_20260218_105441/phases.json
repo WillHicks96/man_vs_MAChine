@@ -1,0 +1,48 @@
+{
+  "mode": "research",
+  "experiment_dir": "/data/a/cpac/nramachandra/Projects/AmSC/claude_agent_experiments/runs/research_20260218_105441",
+  "phases": [
+    {
+      "phase": 1,
+      "query": "Download Frontier-E hydro catalog for 10000 halos including profiles. Visualize 10 different profile types for 10 randomly chosen halos relevant to relaxed/unrelaxed analysis.",
+      "status": "completed",
+      "summary": "Downloaded 10,000 Frontier-E halos at z=0 with 51-bin radial profiles. Stratified 10 halos and visualized: enclosed mass, gas ne, temperature, entropy, thermal pressure, X-ray luminosity, radial velocity, gas fraction, metallicity, CDM fraction. Clear diversity in entropy and temperature profiles.",
+      "artifacts": ["phase1_code.py","phase1_10profiles_10halos.png","phase1_mass_histogram.png","phase1_results.json"]
+    },
+    {
+      "phase": 2,
+      "query": "Compare 10 profile types to ideal reference models (NFW using catalog values, beta-model, Voit entropy, Arnaud UPP, etc.).",
+      "status": "completed",
+      "summary": "Phase 2 computed profile/reference ratios for 10 halos. NFW deviation shows baryonic excess at r<0.2 R500c. Entropy/Voit ratio reveals clear bimodality (cool-core vs. disturbed). Radial velocities show |v_r/sigma|~0.3-1 at R500c. Metallicity centrally peaked in cool-core candidates.",
+      "artifacts": ["phase2_code.py","phase2_profiles_vs_references.png","phase2_nfw_comparison.png","phase2_results.json"]
+    },
+    {
+      "phase": 3,
+      "query": "Fit reference models directly to data for 5 profiles: total density (NFW), gas density (beta), entropy (power law), pressure (UPP), X-ray (beta). Reduce to 5 profiles.",
+      "status": "completed",
+      "summary": "Direct fits for 10 halos using scipy.optimize.curve_fit in log-log space. NFW c_fit=1.5-8.6 vs c_cat=1.7-4.6 (higher in cool-core candidates). Entropy slopes n=0.4-0.65, all below Voit 1.1. Beta-model fits gas density well. UPP fits pressure at intermediate radii.",
+      "artifacts": ["phase3_code.py","phase3_profile_fits.png","phase3_results.json"]
+    },
+    {
+      "phase": 4,
+      "query": "Compute COM-offset relaxation criterion for all 10,000 halos. Run profile fits (NFW, entropy slope) for all halos. Check if profile deviations correlate with COM-offset.",
+      "status": "completed",
+      "summary": "Computed delta_1 (FoF COM vs. potential minimum / R200m) and delta_2 (DM-gas centroid / R500c) for 10,000 halos. NFW 1-parameter fit + entropy slope for all halos. Key findings: (1) entropy slope has Spearman rho=-0.32 with delta_1 (more unrelaxed = flatter entropy profile); (2) K_0 has rho=0.21 (weaker); (3) delta_1 and delta_2 only weakly correlated (rho=0.26) — they measure different disturbances; (4) KS tests highly significant (p<10^-25) for all metrics. NFW c_ratio hits lower bound for many halos (known pathology of 1-param M500c-normalized fit); entropy slope is more robust.",
+      "artifacts": ["phase4_code.py","phase4_com_offset_correlations.png","phase4_offsets_distributions.png","phase4_profile_metrics_by_relaxation.png","phase4_results.json"]
+    },
+    {
+      "phase": 5,
+      "query": "Add delta_3 (highly physically motivated, observable criterion). Compute for all 10,000 halos. Compare all three criteria: find halos relaxed by delta_1 but not delta_2/delta_3, show profiles, assess environmental effects, find extremely unrelaxed objects, examine scaling relations. Physics-first, minimal statistics.",
+      "status": "completed",
+      "summary": "Defined delta_3 = K_core = sod_halo_core_entropy [keV cm^2]; low entropy = cool-core = thermally relaxed (Hudson+2010 threshold 150 keV cm^2). Key findings: (1) 24% of halos concordantly relaxed, 7.6% concordantly unrelaxed; (2) 24.2% are 'sloshing cool cores' — cool-core by delta_3 but DM-disturbed by delta_1 — candidate sloshing cool-core systems; (3) 18% are DM-relaxed with no cool core — likely AGN-heated or post-minor-merger; (4) K_core anti-correlates with core_tcool as expected (validation), and AGN BHR elevated in high-K_core halos (AGN connection); (5) Scaling relations show relaxed clusters lie on tighter L_X-T, Y_SZ-M relations with lower scatter; cool-core clusters (R3) have elevated L_X at fixed T due to surface brightness concentration. X-ray concentration c_X has too-narrow dynamic range (0.42-0.53) in Frontier-E due to AGN feedback overcooling — catalog core_entropy is more robust.",
+      "artifacts": ["phase5_code.py","phase5_three_criteria_comparison.png","phase5_stacked_profiles_by_class.png","phase5_scaling_relations.png","phase5_extreme_objects_profiles.png","phase5_core_entropy_analysis.png","phase5_results.json"]
+    },
+    {
+      "phase": 6,
+      "query": "Add a nuanced δ₄ combining direct catalog observables related to profile differences. Expand the stacked profile analysis: DM relaxation (R1/~R1) as baseline for all, then show profiles for R1∩Rx vs R1∩~Rx for each secondary criterion. Demonstrate profile differences at different radii and their astrophysical implications.",
+      "status": "completed",
+      "summary": "Defined δ₄ = TPI = z(ln core_ne) + z(ln T_ratio), T_ratio = T500cBoloEx/T500c. Combines core electron density (X-ray imaging) with core temperature drop (X-ray spectroscopy). R4 = TPI > 0 classifies 53.5% as cool-core. δ₃-δ₄ discordance: 14% are K-cool-core but not TPI (moderate density with balanced K), 17.5% are TPI-cool but not K (dense with T-drop, possibly shock-heated). Main figure (5×4) shows stacked profiles with DM relaxation baseline, stratified by δ₂, δ₃, δ₄ within DM-relaxed. Ratio plot identifies where each criterion discriminates: δ₂ peaks at 0.3-0.7 R500c (sloshing), δ₃/δ₄ peak at r < 0.15 R500c (core). Shaded radial zones labeled with astrophysical drivers.",
+      "artifacts": ["phase6_code.py","phase6_stacked_profiles_comprehensive.png","phase6_ratio_profiles.png","phase6_tpi_diagnostic.png","phase6_results.json"]
+    }
+  ]
+}
