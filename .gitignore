@@ -1,0 +1,64 @@
+# ── Videos ───────────────────────────────────────────────────────────────────
+*.mp4
+*.avi
+*.mov
+*.mkv
+frames_v*/
+video_assets/
+video_renders/
+video_frames/
+
+# ── Data / large binaries ────────────────────────────────────────────────────
+*.hdf5
+*.h5
+*.fits
+*.npy
+*.npz
+*.pkl
+*.pickle
+*.parquet
+*.jsonl
+
+# ── UUID-named data download dirs ────────────────────────────────────────────
+[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]-*/
+
+# ── PDFs (compiled output -- .tex source is tracked) ─────────────────────────
+*.pdf
+
+# ── Large CSVs (known >1 MB result tables) ───────────────────────────────────
+fit_params.csv
+per_halo_residuals_by_split.csv
+scatter_input_table.csv
+step7_enriched.csv
+step7_table.csv
+step7_with_C_base.csv
+tpi_inputs.csv
+
+# ── LaTeX build artifacts ────────────────────────────────────────────────────
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+
+# ── Python cache ──────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+
+# ── Jupyter ───────────────────────────────────────────────────────────────────
+*.ipynb
+.ipynb_checkpoints/
+
+# ── Temp / scratch dirs ───────────────────────────────────────────────────────
+temp/
+tmp/
+_tmp_*/
+
+# ── OS junk ──────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
