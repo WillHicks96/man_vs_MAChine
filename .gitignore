@@ -4,6 +4,7 @@
 *.mov
 *.mkv
 frames_v*/
+frames_*/
 video_assets/
 video_renders/
 video_frames/
