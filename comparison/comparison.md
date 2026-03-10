@@ -5,6 +5,71 @@
 
 ---
 
+## 0. Metric Definitions
+
+How every metric in this report is computed. All auto-measured values come from `compare.py` and can be verified by re-running it or inspecting `metrics_data.json`.
+
+### Output counts (fully automatic)
+
+| Metric | How it is measured |
+|---|---|
+| **Python scripts** | `rglob("*.py")` count across the team folder tree |
+| **LOC** | Non-blank, non-comment lines; counted with `ast` tokenisation |
+| **Defined functions** | `ast.walk()` counting `FunctionDef` / `AsyncFunctionDef` nodes |
+| **Total PNG plots** | `rglob("*.png")` count |
+| **Pub-ready plots** | PNGs whose filename does *not* match any exploratory pattern (see below) |
+| **Exploratory plots** | Total PNG minus pub-ready |
+| **Data files** | JSON + CSV count |
+| **Structured report pages** | Character count of `.tex` + `.bib` files ÷ 3 000 chars/page |
+| **Execution log pages** | Character count of `.md` files ÷ 3 000 chars/page |
+
+**Pub-ready vs Exploratory classification** is filename-based (see `_EXPLORATORY_PATTERNS` in `compare.py`). A plot is classified exploratory if its name contains any of:
+- `step1_random_profiles_halo` / `phase1_10profiles` — individual halo exploration grids
+- `step6_agnheated_or_postmerger_halo` / `step6_sloshing_coolcores_halo` — per-object diagnostic panels
+- `overview_gas` / `overview_dm` / `multifield_4field_random` — spatial visualisation maps
+- `preview_` — video pipeline preview frames
+
+Everything else is treated as pub-ready (population-level analysis: histograms, stacked profiles, scaling relations, concordance plots, etc.).
+
+---
+
+### Scope coverage (manual rubric, evidence-backed)
+
+**Scientific scope score** is a 7-task rubric filled in by a domain expert. Each task is scored:
+- `1.0` — completed with correct methodology and saved outputs
+- `0.5` — attempted but incomplete or methodologically partial
+- `0.0` — not attempted
+
+The seven tasks mirror the canonical steps in the experiment prompt (profile exploration → model fits → criteria → stacked profiles → scaling relations → extreme objects → core thermodynamics). Every score in `compare.py::RUBRIC` is accompanied by an inline evidence note citing specific output files.
+
+---
+
+### Holistic quality scores (manual, 1–5 scale)
+
+Filled in by a domain expert; rationale is documented inline in `compare.py::HOLISTIC_SCORES`.
+
+| Score | Definition |
+|---|---|
+| **Physics Insight** | Depth of physical interpretation beyond restating numbers — are discordant objects explained? Are caveats (resolution limits, projection effects) acknowledged? Are results connected to known observational or theoretical context? |
+| **Rigor** | Statistical completeness: error bands / percentile envelopes on profiles, scatter quantification on scaling relations, literature-grounded thresholds, cross-classification consistency checks |
+| **Reproducibility** | Can an independent reader re-run the pipeline from the saved files? Full marks require: saved scripts with no missing dependencies, data outputs at each intermediate step, no broken absolute paths |
+| **Novelty** | Original scientific ideas not present in the prompt — new criteria, unexpected diagnostics, creative visualisations, or connections to literature not prompted |
+
+---
+
+### Code quality scores (fully automatic, AST + regex, 1–5 scale)
+
+All four dimensions are computed from `analyze_code_quality_raw()` in `compare.py`. Teams with no saved Python files receive 0 (displayed as N/A).
+
+| Score | What is measured | Scoring rationale |
+|---|---|---|
+| **Readability** | Docstring coverage (% of functions with a docstring), comment density (% of raw lines that are comments), average function length | Weighted sum: 40% docstring coverage (saturates at 50%), 30% comment density (target ~12%), 30% function length (peak at ~30 lines). Mapped 0–1 → 1–5. |
+| **Portability** | Count of lines containing hardcoded absolute paths matching HPC prefixes (`/lustre`, `/data`, `/scratch`, `/proj`, etc.) via regex | `5 − (n_paths / 2)`, floored at 1. Every 2 hardcoded paths costs 1 point. A fully portable script with no hardcoded paths scores 5. |
+| **Robustness** | Count of `try/except` blocks relative to total function count | `1 + 4 × min(1, try_blocks / (0.4 × n_funcs))`. A codebase where ~40% of functions have error handling scores 5. |
+| **Extendability** | Module-level `UPPER_CASE` config constants (config heuristic), average function argument count, magic number density | Weighted sum: 40% config constants (saturates at 10), 30% avg args (saturates at 3+), 30% inverse magic-number density (penalises >15% magic literals). Mapped 0–1 → 1–5. |
+
+---
+
 ## 1. Output at a Glance
 
 | Metric | Human | AI Single-step | AI Multi-step |
