@@ -1,0 +1,199 @@
+{
+  "active_teams": [
+    "Human",
+    "AI\nSingle-step",
+    "AI\nMulti-step"
+  ],
+  "team_metrics": {
+    "Human": {
+      "py_files": 1,
+      "total_loc": 312,
+      "functions": 7,
+      "total_png": 5,
+      "pub_plots": 5,
+      "expl_plots": 0,
+      "gif_files": 1,
+      "json_files": 0,
+      "csv_files": 0,
+      "n_data": 0,
+      "doc_structured": 0,
+      "doc_logs": 0
+    },
+    "AI Single-step": {
+      "py_files": 0,
+      "total_loc": 0,
+      "functions": 0,
+      "total_png": 52,
+      "pub_plots": 32,
+      "expl_plots": 20,
+      "gif_files": 0,
+      "json_files": 20,
+      "csv_files": 9,
+      "n_data": 29,
+      "doc_structured": 0,
+      "doc_logs": 1558203
+    },
+    "AI Multi-step": {
+      "py_files": 31,
+      "total_loc": 8089,
+      "functions": 142,
+      "total_png": 55,
+      "pub_plots": 24,
+      "expl_plots": 31,
+      "gif_files": 0,
+      "json_files": 8,
+      "csv_files": 0,
+      "n_data": 8,
+      "doc_structured": 126115,
+      "doc_logs": 2809
+    }
+  },
+  "code_quality": {
+    "Human": {
+      "Readability": 2.71,
+      "Portability": 4.0,
+      "Robustness": 1.0,
+      "Extendability": 2.48
+    },
+    "AI Single-step": {
+      "Readability": 0.0,
+      "Portability": 0.0,
+      "Robustness": 0.0,
+      "Extendability": 0.0
+    },
+    "AI Multi-step": {
+      "Readability": 4.34,
+      "Portability": 1.0,
+      "Robustness": 2.62,
+      "Extendability": 3.8
+    }
+  },
+  "code_quality_raw": {
+    "Human": {
+      "total_funcs": 7,
+      "docstring_coverage": 0.0,
+      "comment_density": 0.08061002178649238,
+      "avg_func_length": 44.57142857142857,
+      "avg_func_args": 3.4285714285714284,
+      "try_except_blocks": 0,
+      "assertions": 0,
+      "hardcoded_paths": 2,
+      "config_constants": 0,
+      "magic_numbers": 53,
+      "raw_lines": 459,
+      "comment_lines": 37,
+      "funcs_with_docstrings": 0
+    },
+    "AI Single-step": null,
+    "AI Multi-step": {
+      "total_funcs": 142,
+      "docstring_coverage": 0.7605633802816901,
+      "comment_density": 0.06811777281119424,
+      "avg_func_length": 37.13380281690141,
+      "avg_func_args": 3.816901408450704,
+      "try_except_blocks": 23,
+      "assertions": 0,
+      "hardcoded_paths": 41,
+      "config_constants": 213,
+      "magic_numbers": 2123,
+      "raw_lines": 10291,
+      "comment_lines": 701,
+      "funcs_with_docstrings": 108
+    }
+  },
+  "phase_data": {
+    "1": {
+      "loc": 156,
+      "pub_plots": 1,
+      "total_plots": 2
+    },
+    "2": {
+      "loc": 349,
+      "pub_plots": 2,
+      "total_plots": 2
+    },
+    "3": {
+      "loc": 270,
+      "pub_plots": 1,
+      "total_plots": 1
+    },
+    "4": {
+      "loc": 285,
+      "pub_plots": 3,
+      "total_plots": 3
+    },
+    "5": {
+      "loc": 467,
+      "pub_plots": 5,
+      "total_plots": 5
+    },
+    "6": {
+      "loc": 737,
+      "pub_plots": 4,
+      "total_plots": 4
+    },
+    "7": {
+      "loc": 130,
+      "pub_plots": 1,
+      "total_plots": 1
+    }
+  },
+  "rubric": {
+    "Human": [
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.5,
+      0.0,
+      0.5
+    ],
+    "AI Single-step": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "AI Multi-step": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "holistic": {
+    "Human": {
+      "Physics\nInsight": 4,
+      "Rigor": 3,
+      "Reproducibility": 4,
+      "Novelty": 5
+    },
+    "AI Single-step": {
+      "Physics\nInsight": 4,
+      "Rigor": 5,
+      "Reproducibility": 2,
+      "Novelty": 2
+    },
+    "AI Multi-step": {
+      "Physics\nInsight": 4,
+      "Rigor": 4,
+      "Reproducibility": 5,
+      "Novelty": 3
+    }
+  },
+  "task_names": [
+    "Profile\nexploration",
+    "Reference\nmodel fits",
+    "Relaxation\ncriteria",
+    "Stacked\nprofiles",
+    "Scaling\nrelations",
+    "Extreme\nobjects",
+    "Core\nthermo-\ndynamics"
+  ]
+}
