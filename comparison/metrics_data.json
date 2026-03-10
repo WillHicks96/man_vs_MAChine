@@ -1,7 +1,6 @@
 {
   "active_teams": [
     "Human",
-    "AI\nSingle-step",
     "AI\nMulti-step"
   ],
   "team_metrics": {
@@ -18,20 +17,6 @@
       "n_data": 0,
       "doc_structured": 0,
       "doc_logs": 0
-    },
-    "AI Single-step": {
-      "py_files": 0,
-      "total_loc": 0,
-      "functions": 0,
-      "total_png": 52,
-      "pub_plots": 32,
-      "expl_plots": 20,
-      "gif_files": 0,
-      "json_files": 20,
-      "csv_files": 9,
-      "n_data": 29,
-      "doc_structured": 0,
-      "doc_logs": 1558203
     },
     "AI Multi-step": {
       "py_files": 31,
@@ -54,12 +39,6 @@
       "Portability": 4.0,
       "Robustness": 1.0,
       "Extendability": 2.48
-    },
-    "AI Single-step": {
-      "Readability": 0.0,
-      "Portability": 0.0,
-      "Robustness": 0.0,
-      "Extendability": 0.0
     },
     "AI Multi-step": {
       "Readability": 4.34,
@@ -84,7 +63,6 @@
       "comment_lines": 37,
       "funcs_with_docstrings": 0
     },
-    "AI Single-step": null,
     "AI Multi-step": {
       "total_funcs": 142,
       "docstring_coverage": 0.7605633802816901,
@@ -148,15 +126,6 @@
       0.0,
       0.5
     ],
-    "AI Single-step": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
-    ],
     "AI Multi-step": [
       1.0,
       1.0,
@@ -173,12 +142,6 @@
       "Rigor": 3,
       "Reproducibility": 4,
       "Novelty": 5
-    },
-    "AI Single-step": {
-      "Physics\nInsight": 4,
-      "Rigor": 5,
-      "Reproducibility": 2,
-      "Novelty": 2
     },
     "AI Multi-step": {
       "Physics\nInsight": 4,

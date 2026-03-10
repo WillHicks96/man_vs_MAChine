@@ -552,7 +552,8 @@ def fig_inventory(metrics: dict):
 def fig_yield(metrics: dict):
     """Donut per team: pub-ready vs exploratory plot fraction."""
     n = len(ACTIVE_TEAMS)
-    fig, axes = plt.subplots(1, n, figsize=(max(5 * n, 8), 5.5))
+    # Extra vertical space so count labels below the ring don't clip
+    fig, axes = plt.subplots(1, n, figsize=(max(5 * n, 8), 6.2))
     if n == 1:
         axes = [axes]
 
@@ -563,34 +564,29 @@ def fig_yield(metrics: dict):
         pct   = 100 * pub / total if total else 0
         color = COLORS[label]
 
-        wedge_colors = [color, "#21262D"]
+        # Thin ring: width=0.18 leaves a large open centre for the text
         ax.pie(
             [pub, expl],
-            colors=wedge_colors,
+            colors=[color, "#2A2F3A"],
             startangle=90,
-            wedgeprops={"width": 0.58, "edgecolor": BG, "linewidth": 3},
+            wedgeprops={"width": 0.18, "edgecolor": BG, "linewidth": 2},
         )
 
-        # Single centred text block: percentage + label, well inside the hole
-        ax.text(0, 0.10, f"{pct:.0f}%",
+        # Large % in the centre — plenty of room with a thin ring
+        ax.text(0, 0.08, f"{pct:.0f}%",
                 ha="center", va="center",
-                fontsize=32, fontweight="bold", color=color)
-        ax.text(0, -0.22, "pub-ready",
+                fontsize=44, fontweight="bold", color=color)
+        ax.text(0, -0.18, "pub-ready",
                 ha="center", va="center",
-                fontsize=12, color=MUTED)
+                fontsize=13, color=TXT)
 
-        # Counts as small annotations outside the ring, avoiding overlap
-        ax.annotate(
-            f"Pub: {pub}",
-            xy=(0.55, 0.55), xycoords="axes fraction",
-            fontsize=10, color=color, fontweight="bold",
-        )
-        ax.annotate(
-            f"Exploratory: {expl}",
-            xy=(0.02, 0.10), xycoords="axes fraction",
-            fontsize=10, color=MUTED,
-        )
-        ax.set_title(SHORT[label], pad=14, color=color,
+        # Raw counts just below the axes (outside the pie area)
+        ax.text(0, -1.45,
+                f"■ Pub-ready: {pub}    ░ Exploratory: {expl}    Total: {total}",
+                ha="center", va="center",
+                fontsize=10, color=MUTED)
+
+        ax.set_title(SHORT[label], pad=16, color=color,
                      fontsize=14, fontweight="bold")
 
     fig.suptitle("Plot Yield Ratio — Pub-ready vs Exploratory",
