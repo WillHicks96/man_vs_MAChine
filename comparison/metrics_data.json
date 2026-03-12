@@ -18,7 +18,7 @@
       "doc_structured": 0,
       "doc_logs": 0
     },
-    "AI Multi-step": {
+    "AI": {
       "py_files": 31,
       "total_loc": 8089,
       "functions": 142,
@@ -40,7 +40,7 @@
       "Robustness": 1.0,
       "Extendability": 2.48
     },
-    "AI Multi-step": {
+    "AI": {
       "Readability": 4.34,
       "Portability": 1.0,
       "Robustness": 2.62,
@@ -63,7 +63,7 @@
       "comment_lines": 37,
       "funcs_with_docstrings": 0
     },
-    "AI Multi-step": {
+    "AI": {
       "total_funcs": 142,
       "docstring_coverage": 0.7605633802816901,
       "comment_density": 0.06811777281119424,
@@ -112,8 +112,8 @@
     },
     "7": {
       "loc": 130,
-      "pub_plots": 1,
-      "total_plots": 1
+      "pub_plots": 8,
+      "total_plots": 38
     }
   },
   "rubric": {
@@ -126,7 +126,7 @@
       0.0,
       0.5
     ],
-    "AI Multi-step": [
+    "AI": [
       1.0,
       1.0,
       1.0,
@@ -143,7 +143,7 @@
       "Reproducibility": 4,
       "Novelty": 5
     },
-    "AI Multi-step": {
+    "AI": {
       "Physics\nInsight": 4,
       "Rigor": 4,
       "Reproducibility": 5,

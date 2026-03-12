@@ -63,7 +63,7 @@ COLORS = {
 SHORT = {
     "Human":           "Human",
     "AI\nSingle-step": "AI Single-step",
-    "AI\nMulti-step":  "AI",
+    "AI\nMulti-step":  "AI Multi-step",
 }
 
 # ── Style ──────────────────────────────────────────────────────────────────────
@@ -75,8 +75,7 @@ MUTED = "#8B949E"
 plt.rcParams.update({
     "figure.facecolor": BG,
     "axes.facecolor":   BG,
-    "axes.edgecolor":   "#6E7681",
-    "axes.linewidth":   1.5,
+    "axes.edgecolor":   GRID,
     "axes.labelcolor":  TXT,
     "xtick.color":      TXT,
     "ytick.color":      TXT,
@@ -86,13 +85,12 @@ plt.rcParams.update({
     "legend.facecolor": "#161B22",
     "legend.edgecolor": GRID,
     "font.family":      "DejaVu Sans",
-    "font.size":        14,
-    "axes.titlesize":   18,
-    "axes.labelsize":   15,
+    "font.size":        11,
+    "axes.titlesize":   14,
+    "axes.labelsize":   12,
     "axes.titleweight": "bold",
-    "xtick.labelsize":  13,
-    "ytick.labelsize":  13,
-    "legend.fontsize":  13,
+    "xtick.labelsize":  10,
+    "ytick.labelsize":  10,
 })
 
 
@@ -219,31 +217,16 @@ MULTISTEP_KEY = "AI\nMulti-step"
 def collect_phase_data(multistep_dir: Path) -> dict:
     """Per-phase LOC and pub-ready plot counts for the multi-step team."""
     result = {}
-    phase_matched: set[Path] = set()
-
     for phase, scripts in PHASE_SCRIPTS.items():
         loc = sum(count_loc(multistep_dir / s)
                   for s in scripts if (multistep_dir / s).exists())
         phase_pngs = list(multistep_dir.glob(f"phase{phase}_*.png"))
         pub   = sum(1 for f in phase_pngs if classify_png(f.name) == "pub")
-        phase_matched.update(phase_pngs)
         result[phase] = {
             "loc":        loc,
             "pub_plots":  pub,
             "total_plots": len(phase_pngs),
         }
-
-    # Pick up pub-ready PNGs not matched by any phase{N}_*.png pattern
-    # (e.g. halo_viz subdirectory) and attribute to the last phase.
-    orphan_pngs = [f for f in multistep_dir.rglob("*.png")
-                   if f not in phase_matched]
-    orphan_pub   = sum(1 for f in orphan_pngs if classify_png(f.name) == "pub")
-    orphan_total = len(orphan_pngs)
-    if orphan_pub or orphan_total:
-        last = max(result)
-        result[last]["pub_plots"]   += orphan_pub
-        result[last]["total_plots"] += orphan_total
-
     return result
 
 
@@ -549,9 +532,9 @@ def fig_inventory(metrics: dict):
             ax.text(
                 x[1] + offsets[i],
                 vals[1] / 2,
-                f"{fn} functions\n{loc} lines of code",
+                f"{fn} fns\n{loc} LOC",
                 ha="center", va="center",
-                fontsize=10, color=BG, fontweight="bold",
+                fontsize=9, color=BG, fontweight="bold",
             )
 
     ax.set_xticks(x)
@@ -655,141 +638,80 @@ def fig_scope():
 
 def fig_code(metrics: dict, phase_data: dict):
     """
-    Top-left  (50% wide, 75% tall): inventory grouped bar — pub-ready plots and
-              Python scripts per active team, with a caption table underneath.
-    Top-right (50% wide, 75% tall): multi-step follow-up query convergence.
-    Bottom strip (25% tall): table on the left, disclaimer on the right —
-              both within the canvas so bbox_inches='tight' doesn't inflate size.
+    Left:  LOC + function count bar per active team.
+    Right: multi-step phase-by-phase convergence (only when multi-step is active).
     """
     has_multistep = MULTISTEP_KEY in ACTIVE_TEAMS and phase_data
+    ncols = 2 if has_multistep else 1
+    fig, axes = plt.subplots(1, ncols, figsize=(7 * ncols, 5.5))
+    ax1 = axes[0] if ncols > 1 else axes
+    ax2 = axes[1] if ncols > 1 else None
 
-    # 35% bottom margin so x-tick labels clear the table below them.
-    BOT = 0.35
-    fig = plt.figure(figsize=(15.5, 6))
-    fig.subplots_adjust(left=0.07, right=0.95, top=0.93, bottom=BOT,
-                        wspace=0.42)
+    # --- LOC bar ---
+    n     = len(ACTIVE_TEAMS)
+    x     = np.arange(n)
+    locs  = [metrics[l]["total_loc"]  for l in ACTIVE_TEAMS]
+    funcs = [metrics[l]["functions"]  for l in ACTIVE_TEAMS]
+    bars  = ax1.bar(x, locs, color=active_colors(), alpha=0.88, width=0.5, zorder=3)
+    bar_label(ax1, bars, offset=20)
 
-    if has_multistep:
-        ax1 = fig.add_subplot(1, 2, 1)
-        ax2 = fig.add_subplot(1, 2, 2)
-        ax_tbl = fig.add_axes([0.07, 0.01, 0.43, BOT - 0.14])
-        ax_dis = fig.add_axes([0.53, 0.01, 0.42, BOT - 0.14])
-        for ax in (ax_tbl, ax_dis):
-            ax.axis("off")
-    else:
-        ax1    = fig.add_subplot(1, 1, 1)
-        ax2    = None
-        ax_tbl = fig.add_axes([0.07, 0.01, 0.43, BOT - 0.14])
-        ax_tbl.axis("off")
-        ax_dis = None
-
-    # ── Top-left: inventory bars ───────────────────────────────────────────────
-    categories = [
-        ("pub_plots", "Pub-ready Plots"),
-        ("py_files",  "Python Scripts"),
-    ]
-    n_cat   = len(categories)
-    n_team  = len(ACTIVE_TEAMS)
-    x       = np.arange(n_cat)
-    width   = min(0.35, 0.8 / n_team)
-    offsets = np.linspace(-(n_team - 1) / 2, (n_team - 1) / 2, n_team) * width
-
-    for i, (label, color) in enumerate(zip(ACTIVE_TEAMS, active_colors())):
-        vals  = [metrics[label][key] for key, _ in categories]
-        rects = ax1.bar(x + offsets[i], vals, width,
-                        label=SHORT[label], color=color, alpha=0.88, zorder=3)
-        bar_label(ax1, rects, offset=1, fontsize=12)
+    for xi, (loc, fn, label) in enumerate(zip(locs, funcs, ACTIVE_TEAMS)):
+        if loc > 0:
+            ax1.text(xi, loc / 2, f"{fn} fns",
+                     ha="center", va="center",
+                     fontsize=11, color=BG, fontweight="bold")
+        else:
+            ax1.text(xi, 30, "no saved\nscripts",
+                     ha="center", va="bottom",
+                     fontsize=9, color=MUTED, style="italic")
 
     ax1.set_xticks(x)
-    ax1.set_xticklabels([name for _, name in categories], fontsize=14)
-    ax1.set_ylabel("Count", fontsize=15)
-    ax1.set_title("Output Inventory per Team", pad=14, fontsize=18)
+    ax1.set_xticklabels(active_short(), fontsize=11)
+    ax1.set_ylabel("Lines of Code (non-blank, non-comment)")
+    ax1.set_title("Codebase Size", pad=12)
     ax1.yaxis.grid(True, zorder=0)
     ax1.set_axisbelow(True)
-    ax1.legend(fontsize=13)
-
-    # ── Bottom-left: caption table ─────────────────────────────────────────────
-    tbl_rows = [[SHORT[l],
-                 str(metrics[l]["functions"]),
-                 str(metrics[l]["total_loc"])]
-                for l in ACTIVE_TEAMS]
-    tbl_cols = ["Team", "Functions", "Lines of code"]
-    tbl = ax_tbl.table(
-        cellText=tbl_rows,
-        colLabels=tbl_cols,
-        cellLoc="center",
-        loc="center",
-        bbox=[0.05, 0.2, 0.8, 0.8],
-    )
-    tbl.auto_set_font_size(False)
-    tbl.set_fontsize(12)
-    tbl.scale(1, 0.6)
-    tbl.auto_set_column_width([0, 1, 2])
-    for (r, c), cell in tbl.get_celld().items():
-        cell.set_edgecolor(GRID)
-        if r == 0:
-            cell.set_facecolor("#21262D")
-            cell.set_text_props(color=TXT, fontweight="bold")
-        else:
-            team_key = ACTIVE_TEAMS[r - 1]
-            cell.set_facecolor(COLORS[team_key] if c == 0 else "#161B22")
-            cell.set_text_props(
-                color=BG if c == 0 else TXT,
-                fontweight="bold" if c == 0 else "normal",
-            )
+    ax1.annotate("Number inside bar = defined functions",
+                 xy=(0.02, -0.1), xycoords="axes fraction",
+                 fontsize=8, color=MUTED)
 
     if not has_multistep or ax2 is None:
+        fig.tight_layout()
         savefig(fig, "fig4_code.png")
         return
 
-    # ── Top-right: follow-up query convergence ─────────────────────────────────
-    phases        = sorted(phase_data.keys())
-    cum_loc       = list(np.cumsum([phase_data[p]["loc"]      for p in phases]))
-    cum_pub       = list(np.cumsum([phase_data[p]["pub_plots"] for p in phases]))
+    # --- Phase convergence (right panel) ---
+    phases  = sorted(phase_data.keys())
+    cum_loc = list(np.cumsum([phase_data[p]["loc"]      for p in phases]))
+    cum_pub = list(np.cumsum([phase_data[p]["pub_plots"] for p in phases]))
     phase_loc_per = [phase_data[p]["loc"] for p in phases]
-    query_labels  = [f"Q{p}" for p in phases]
 
     color_ms = COLORS[MULTISTEP_KEY]
 
     ax2b = ax2.twinx()
-    ax2.bar(phases, phase_loc_per, color=color_ms, alpha=0.30,
-            label="Lines of code per query")
-    ax2.plot(phases, cum_loc, "o-", color=color_ms, lw=2.5, ms=8,
-             label="Cumulative lines of code")
-    ax2.set_ylabel("Lines of Code", color=color_ms, fontsize=15)
-    ax2.tick_params(axis="y", colors=color_ms, labelsize=13)
+    ax2.bar(phases, phase_loc_per, color=color_ms, alpha=0.30, label="Phase LOC")
+    ax2.plot(phases, cum_loc, "o-", color=color_ms, lw=2, ms=7,
+             label="Cumulative LOC")
+    ax2.set_ylabel("Lines of Code", color=color_ms)
+    ax2.tick_params(axis="y", colors=color_ms)
 
-    ax2b.plot(phases, cum_pub, "s--", color="#98FF98", lw=2.5, ms=8,
-              label="Cumulative pub-ready plots")
-    ax2b.set_ylabel("Cumulative pub-ready plots", color="#98FF98", fontsize=15)
-    ax2b.tick_params(axis="y", colors="#98FF98", labelsize=13)
+    ax2b.plot(phases, cum_pub, "s--", color="#98FF98", lw=2, ms=7,
+              label="Cumul. pub-ready plots")
+    ax2b.set_ylabel("Cumulative pub-ready plots", color="#98FF98")
+    ax2b.tick_params(axis="y", colors="#98FF98")
 
     ax2.set_xticks(phases)
-    ax2.set_xticklabels(query_labels, fontsize=14)
-    ax2.set_xlabel("Follow-up query", fontsize=15)
-    ax2.set_title("Output with follow-up queries", pad=14, fontsize=18)
+    ax2.set_xticklabels([f"Ph {p}" for p in phases], fontsize=9)
+    ax2.set_xlabel("Phase")
+    ax2.set_title("Multi-step: Phase Convergence", pad=12)
     ax2.yaxis.grid(True, zorder=0)
     ax2.set_axisbelow(True)
 
     lines1, labs1 = ax2.get_legend_handles_labels()
     lines2, labs2 = ax2b.get_legend_handles_labels()
-    ax2.legend(lines1 + lines2, labs1 + labs2, loc="upper left", fontsize=13)
+    ax2.legend(lines1 + lines2, labs1 + labs2, loc="upper left", fontsize=9)
 
-    # ── Bottom-right: disclaimer ───────────────────────────────────────────────
-    disclaimer = (
-        "* Two independent, single-trial explorations of the same scientific\n"
-        "  question — but with fundamentally different approaches.\n"
-        "  Not a task-for-task comparison."
-    )
-    ax_dis.text(
-        0.97, 0.35, disclaimer,
-        transform=ax_dis.transAxes,
-        ha="right", va="center",
-        fontsize=12, color=MUTED, style="italic",
-        bbox=dict(boxstyle="round,pad=0.5", facecolor="#161B22",
-                  edgecolor=GRID, alpha=0.85),
-    )
-
+    fig.tight_layout()
     savefig(fig, "fig4_code.png")
 
 
@@ -870,7 +792,7 @@ def fig_docs(metrics: dict):
 def fig_scoreboard(metrics: dict, code_quality: dict):
     """Pitch-deck summary table with all key metrics."""
     col_labels = [
-        "Scripts", "Pub-ready\nPlots", "Lines of\nCode",
+        "Scripts", "Pub-ready\nPlots", "LOC",
         "Scope\nCoverage", "Repro-\nducibility", "Novelty",
         "Readability\n(auto)", "Portability\n(auto)", "Robustness\n(auto)",
     ]
@@ -947,7 +869,7 @@ def fig_code_quality(code_quality: dict, metrics: dict):
     angles = np.linspace(0, 2 * np.pi, len(dims), endpoint=False).tolist()
     angles += angles[:1]
 
-    fig = plt.figure(figsize=(16.2, 7.2))
+    fig = plt.figure(figsize=(14, 6))
     ax_radar = fig.add_subplot(121, polar=True)
     ax_bar   = fig.add_subplot(122)
 
@@ -1005,25 +927,11 @@ def fig_code_quality(code_quality: dict, metrics: dict):
     ax_bar.legend(fontsize=10)
     ax_bar.annotate(
         "Lower hardcoded paths = more portable   |   Higher comment/docstring = more readable",
-        xy=(0.5, -0.15), xycoords="axes fraction",
+        xy=(0.5, -0.13), xycoords="axes fraction",
         ha="center", fontsize=8, color=MUTED,
     )
 
     fig.tight_layout(pad=2.0)
-    fig.subplots_adjust(bottom=0.22)  # carve out bottom strip for disclaimer
-
-    fig.text(
-        0.34, 0.15,
-        "* Two independent, single-trial explorations\n"
-        "  of the same scientific question — but with\n"
-        "  fundamentally different approaches.\n"
-        "  Not a task-for-task comparison.",
-        ha="left", va="bottom",
-        fontsize=12, color=MUTED, style="italic",
-        bbox=dict(boxstyle="round,pad=0.4", facecolor="#161B22",
-                  edgecolor=GRID, alpha=0.85),
-    )
-
     savefig(fig, "fig8_code_quality.png")
 
 
